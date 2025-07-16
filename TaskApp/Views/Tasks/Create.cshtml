@@ -1,0 +1,68 @@
+﻿@model TaskApp.Models.Task
+
+<div class="container" style="max-width: 800px; margin-top: 2rem;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm" style="border-radius: 12px; border: none;">
+                <div class="card-header bg-white border-0 pt-4">
+                    <h2 class="text-center" style="color: #4d44db; font-weight: 600;">Create New Task</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                       
+                        <div class="mb-4">
+                            <label asp-for="Title" class="form-label" style="color: #4d44db; font-weight: 500;">Title*</label>
+                            <input asp-for="Title" class="form-control" style="border-radius: 8px; padding: 10px; border: 1px solid #e0e0e0;"
+                                   placeholder="Enter task title" required />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label" style="color: #4d44db; font-weight: 500;">Description</label>
+                            <textarea asp-for="Description" class="form-control" style="border-radius: 8px; padding: 10px; border: 1px solid #e0e0e0;"
+                                      rows="4" placeholder="Enter task description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="DueDate" class="form-label" style="color: #4d44db; font-weight: 500;">Due Date*</label>
+                            <input asp-for="DueDate" class="form-control" style="border-radius: 8px; padding: 10px; border: 1px solid #e0e0e0;"
+                                   type="date" required />
+                            <span asp-validation-for="DueDate" class="text-danger small"></span>
+                        </div>
+
+                        
+                        <div class="mb-4">
+                            <label asp-for="Status" class="form-label" style="color: #4d44db; font-weight: 500;">Status*</label>
+                            <select asp-for="Status" class="form-select" style="border-radius: 8px; padding: 10px; border: 1px solid #e0e0e0;" required>
+                                <option value="" disabled selected>Select status</option>
+                                <option value="Not Started">Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger small"></span>
+                        </div>
+
+                       
+                        <div class="d-flex justify-content-between mt-4">
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4" style="border-radius: 50px;">
+                                <i class="bi bi-arrow-left"></i> Back
+                            </a>
+                            <button type="submit" class="btn text-white px-4" style="background-color: #6c63ff; border-radius: 50px; border: none;">
+                                <i class="bi bi-plus-circle"></i> Create Task
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
